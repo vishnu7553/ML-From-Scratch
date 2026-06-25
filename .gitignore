@@ -25,3 +25,4 @@ Thumbs.db
 *.parquet
 *.h5
 *.pkl
+.obsidian/
