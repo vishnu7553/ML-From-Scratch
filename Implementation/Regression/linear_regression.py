@@ -6,11 +6,10 @@ import matplotlib.pyplot as plt
 # Dataset
 # ─────────────────────────────────────────────
 
-dataset = pd.read_csv("datasets/Salary_dataset.csv")
+dataset = pd.read_csv("../datasets/Salary_dataset.csv")
 
 X = dataset["YearsExperience"].values
 y = dataset["Salary"].values
-
 
 # ─────────────────────────────────────────────
 # Visualisation Helpers
