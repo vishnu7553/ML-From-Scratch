@@ -16,6 +16,7 @@ before any code is written.
 | Machine Learning | [Introduction](Notes/Machine%20Learning.md) | — |
 | Supervised Learning | [Overview](Notes/Supervised%20Learning.md) | — |
 | Linear Regression | [Derivation](Notes/Linear%20Regression.md) | [Code](Implementation/Regression/linear_regression.py) |
+| Logistic Regression | [Derivation](Notes/Logistic%20Regression.md) | [Code](Implementation/Classification/logistic_regression.py) |
 
 ---
 
@@ -23,15 +24,17 @@ before any code is written.
 
 ```
 ML/
-├── Notes/               # Mathematical derivations and concept notes
+├── Notes/                    # Mathematical derivations and concept notes
 │   ├── Machine Learning.md
 │   ├── Supervised Learning.md
-│   └── Linear Regression.md
+│   ├── Linear Regression.md
+│   └── Logistic Regression.md
 │
-└── Implementation/      # From-scratch Python implementations
+└── Implementation/           # From-scratch Python implementations
     ├── Regression/
     │   └── linear_regression.py
     ├── Classification/
+    │   └── logistic_regression.py
     └── datasets/
 ```
 
@@ -52,8 +55,8 @@ Each implementation follows this sequence:
 
 ```bash
 # Clone the repo
-git clone https://github.com/vishnu7553/ml-from-scratch
-cd ml-from-scratch/Implementation
+git clone https://github.com/vishnu7553/ML-From-Scratch
+cd ML-From-Scratch/Implementation
 
 # Install dependencies
 pip install uv
@@ -61,6 +64,9 @@ uv sync
 
 # Run linear regression
 python Regression/linear_regression.py
+
+# Run logistic regression
+python Classification/logistic_regression.py
 ```
 
 ---
