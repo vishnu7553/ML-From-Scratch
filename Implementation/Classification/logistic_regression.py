@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,7 +8,9 @@ import matplotlib.pyplot as plt
 # Dataset
 # ─────────────────────────────────────────────
 
-data = pd.read_csv("../datasets/student.csv")
+DATASETS_DIR = Path(__file__).resolve().parent.parent / "datasets"
+
+data = pd.read_csv(DATASETS_DIR / "student.csv")
 
 X = data["study_hours"].values.reshape(-1, 1)
 y = data["pass_fail"].values.reshape(-1, 1)

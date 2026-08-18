@@ -1,11 +1,11 @@
 [project]
 name = "implementation"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
+description = "Machine learning algorithms implemented from scratch with NumPy"
 requires-python = ">=3.13"
 dependencies = [
     "matplotlib>=3.11.0",
     "numpy>=2.5.0",
     "pandas>=3.0.3",
+    "scipy>=1.18.0",
 ]

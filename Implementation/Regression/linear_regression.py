@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,7 +8,9 @@ import matplotlib.pyplot as plt
 # Dataset
 # ─────────────────────────────────────────────
 
-dataset = pd.read_csv("../datasets/Salary_dataset.csv")
+DATASETS_DIR = Path(__file__).resolve().parent.parent / "datasets"
+
+dataset = pd.read_csv(DATASETS_DIR / "Salary_dataset.csv")
 
 X = dataset["YearsExperience"].values
 y = dataset["Salary"].values
