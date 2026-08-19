@@ -7,7 +7,7 @@
 <style>
 :root { color-scheme: light dark; }
 html, body { margin: 0; height: 100%; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; }
-#graph { display: block; width: 100vw; height: 100vh; }
+#graph { display: block; width: 100vw; height: 100vh; touch-action: none; }
 body { background: transparent; }
 
 @media (prefers-color-scheme: light) {
@@ -24,6 +24,8 @@ body { background: transparent; }
 }
 .node.hl { fill: #86efac; }
 .link { stroke-width: 1.5; stroke-opacity: 0.65; }
+.node { cursor: pointer; }
+.node:hover { stroke: #86efac; stroke-width: 2; }
 .label { font-size: 14px; text-anchor: middle; pointer-events: none; user-select: none; }
 
 .controls { position: fixed; top: 12px; right: 12px; z-index: 10; display: flex; flex-direction: column; gap: 6px; }
@@ -35,7 +37,7 @@ body { background: transparent; }
 .controls button:hover { background: rgba(128,128,128,.25); }
 #hint {
   position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); z-index: 10;
-  font-size: 13px; opacity: .75; pointer-events: none;
+  font-size: 13px; opacity: .75; pointer-events: none; white-space: nowrap;
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
@@ -48,7 +50,7 @@ body { background: transparent; }
   <button id="fit" title="Reset / fit graph">&#8617;</button>
   <button id="full" title="Toggle fullscreen">&#9864;</button>
 </div>
-<div id="hint">Scroll to zoom &middot; drag to pan</div>
+<div id="hint">Scroll to zoom &middot; drag to pan &middot; drag a node to move it &middot; click a node to open it</div>
 <svg id="graph"></svg>
 <script>
 (function () {
@@ -65,11 +67,23 @@ body { background: transparent; }
   nodes.forEach(function (n) { degree[n.id] = 0; });
   links.forEach(function (l) { degree[l.source]++; degree[l.target]++; });
 
+  function openNode(d) {
+    var parts = [];
+    (d.file || d.label || d.id).split("/").forEach(function (seg) {
+      if (seg === "..") { parts.pop(); }
+      else if (seg !== "." && seg !== "") { parts.push(seg); }
+    });
+    var url = "https://github.com/vishnu7553/ML-From-Scratch/blob/main/" + encodeURI(parts.join("/"));
+    window.open(url, "_blank");
+  }
+
   var sim = d3.forceSimulation(nodes)
     .force("link", d3.forceLink(links).id(function (d) { return d.id; }).distance(70).strength(0.4))
     .force("charge", d3.forceManyBody().strength(-320))
     .force("center", d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2))
-    .force("collide", d3.forceCollide().radius(function (d) { return (d.id === "Machine Learning" ? 26 : 14) + 12; }));
+    .force("collide", d3.forceCollide().radius(function (d) { return (d.id === "Machine Learning" ? 26 : 14) + 12; }))
+    .alphaTarget(0.03)
+    .restart();
 
   var link = linkLayer.selectAll("line").data(links).enter().append("line").attr("class", "link");
   var node = nodeLayer.selectAll("g").data(nodes).enter().append("g");
@@ -96,6 +110,28 @@ body { background: transparent; }
     .on("zoom", function (event) { viewport.attr("transform", event.transform); });
   svg.call(zoom);
 
+  var moved = false;
+  node.call(d3.drag()
+    .on("start", function (event, d) {
+      moved = false;
+      event.sourceEvent.stopPropagation();
+      if (!event.active) sim.alphaTarget(0.2).restart();
+      d.fx = d.x; d.fy = d.y;
+    })
+    .on("drag", function (event, d) {
+      moved = true;
+      d.fx = event.x; d.fy = event.y;
+    })
+    .on("end", function (event, d) {
+      if (!event.active) sim.alphaTarget(0.03);
+      d.fx = null; d.fy = null;
+    }));
+  node.on("click", function (event, d) {
+    if (moved) return;
+    event.stopPropagation();
+    openNode(d);
+  });
+
   function fit() {
     var pad = 80;
     var xs = nodes.map(function (d) { return d.x; });
@@ -121,9 +157,7 @@ body { background: transparent; }
     sim.force("center", d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2)).alpha(0.3).restart();
   });
 
-  sim.on("end", function () {
-    d3.timeout(function () { fit(); }, 60);
-  });
+  d3.timeout(function () { fit(); }, 600);
 })();
 </script>
 </body>
