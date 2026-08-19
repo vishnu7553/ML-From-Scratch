@@ -40,7 +40,7 @@ At first glance $\mathcal{L}(\theta) = p(y \mid x; \theta)$ looks like we're jus
 - **Likelihood of parameters** ✅ — **Likelihood of data** ❌ — we're estimating parameters, not data.
 - **Probability of data** ✅ — **Probability of parameters** ❌ — same reasoning, reversed.
 
-So: when $\theta$ varies and the dataset is fixed, it's called $\mathcal{L}(\theta)$. When $\theta$ is fixed and the data point varies (like the query point in [[Locally Weighted Regression]]), it's called a probability function $p(\cdot)$. Same underlying math, different name depending on what's being held constant.
+So: when $\theta$ varies and the dataset is fixed, it's called $\mathcal{L}(\theta)$. When $\theta$ is fixed and the data point varies (like the query point in [[Locally weighted regression]]), it's called a probability function $p(\cdot)$. Same underlying math, different name depending on what's being held constant.
 
 ## Maximum Likelihood Estimation
 
@@ -84,7 +84,7 @@ Now we're ready to jump to classification.
 ## Related Notes
 
 - [[Linear Regression]]
-- [[Locally Weighted Regression]]
+- [[Locally weighted regression]]
 - [[Logistic Regression]]
 - [[Generalized linear models]]
 - [[Loss Functions]]

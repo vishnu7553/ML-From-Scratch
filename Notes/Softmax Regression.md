@@ -89,8 +89,8 @@ The learning rule treats the output as a probability distribution and uses gradi
 ## Related Notes
 
 - [[Logistic Regression]]
-- [[Generalized Linear Models]]
-- [[Exponential Family]]
+- [[Generalized linear models]]
+- [[Exponential family]]
 
 ## References
 

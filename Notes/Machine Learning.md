@@ -1,3 +1,7 @@
+---
+graph-size: 2
+---
+
 # Machine Learning
 
 ## Definition

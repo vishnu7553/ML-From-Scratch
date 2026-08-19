@@ -102,7 +102,7 @@ flowchart LR
 | [[Linear Regression]] | Continuous output, linear relationship |
 | [[Decision Trees]] | Non-linear relationships, interpretable |
 | [[Random Forest]] | High accuracy, handles noise well |
-| [[Support Vector Machine]] | High-dimensional data |
+| [[Support Vector Machines]] | High-dimensional data |
 
 ### Classification
 
@@ -111,7 +111,7 @@ flowchart LR
 | [[Logistic Regression]] | Binary classification, probability output |
 | [[Decision Trees]] | Multi-class, interpretable rules |
 | [[Random Forest]] | Robust multi-class classification |
-| [[Support Vector Machine]] | Clear margin between classes |
+| [[Support Vector Machines]] | Clear margin between classes |
 | [[K-Nearest Neighbours]] | Simple, instance-based classification |
 
 ---

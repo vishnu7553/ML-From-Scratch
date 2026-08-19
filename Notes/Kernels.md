@@ -6,7 +6,7 @@ $$\boxed{\text{SVM} = \text{Optimal Margin} + \text{Kernel}}$$
 
 ## Why the Dual Problem, Not the Raw Expansion
 
-Once we prove the optimization objective touches $x_i, x_j$ only as an inner product ($\alpha_i\alpha_j y_iy_j (x_i^Tx_j)$, from [[Optimal Margin Classifier]]), you might think it's ready to code. But textbooks and papers don't leave it in that raw expanded form — they use the **Dual Optimization Problem** instead. Two reasons:
+Once we prove the optimization objective touches $x_i, x_j$ only as an inner product ($\alpha_i\alpha_j y_iy_j (x_i^Tx_j)$, from [[Optimal margin classifier]]), you might think it's ready to code. But textbooks and papers don't leave it in that raw expanded form — they use the **Dual Optimization Problem** instead. Two reasons:
 
 1. **Messy constraints:** even with the inner product ready for a kernel, the original setup's per-point margin constraints are still there. `Lagrange Duality` is the tool that folds those constraints into the objective, turning a painful constrained minimization into a cleaner maximization over just the $\alpha$ values.
 2. **The standardized form is what you'll see in every paper:**
@@ -117,7 +117,7 @@ $$\exp\left(\frac{x^Tz}{\sigma^2}\right) = \sum_{k=0}^{\infty}\frac{1}{k!}\left(
 |Radial Basis Function (RBF / Gaussian)|$k(x,z) = \exp(-\|x-z\|^2/2\sigma^2)$|Popular default; infinite-dimensional feature space|
 |Sigmoid|—|Equivalent to a two-layer perceptron neural network|
 
-**The kernel trick is general** — any algorithm that can be written in terms of $\langle x_i,x_j\rangle$ can use kernels, not just SVM. This applies to any [[Generalized Linear Models|GLM]] (Linear, Logistic, etc.), fitting the model to an infinite-dimensional space to produce non-linear decision boundaries.
+**The kernel trick is general** — any algorithm that can be written in terms of $\langle x_i,x_j\rangle$ can use kernels, not just SVM. This applies to any [[Generalized linear models|GLM]] (Linear, Logistic, etc.), fitting the model to an infinite-dimensional space to produce non-linear decision boundaries.
 
 ## Soft Margin — Handling Outliers and Noise
 
@@ -167,8 +167,8 @@ This box constraint prevents any single training point from exerting too much in
 ## Related Notes
 
 - [[Support Vector Machines]]
-- [[Optimal Margin Classifier]]
-- [[Generalized Linear Models]]
+- [[Optimal margin classifier]]
+- [[Generalized linear models]]
 
 ## References
 
