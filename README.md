@@ -4,9 +4,10 @@
   <a href="https://vishnu7553.github.io/ML-From-Scratch/" target="_blank" title="Open interactive graph (full screen)">
     <img src="https://raw.githubusercontent.com/vishnu7553/ML-From-Scratch/main/docs/graph.svg?v=3" alt="ML concept graph" />
   </a>
+  <p>Click open the interactive graph.</p>
 </p>
 
-<p align="center">Open the interactive graph.</p>
+
 Machine learning implemented from scratch — no sklearn, no shortcuts. Every algorithm is built from its mathematical foundation, with derivations in the notes and corresponding Python implementations.
 
 ---
