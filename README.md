@@ -1,11 +1,11 @@
 # ML From Scratch
 
-<a href="https://raw.githubusercontent.com/vishnu7553/ML-From-Scratch/main/docs/graph.svg" target="_blank" title="Open full-size SVG in new tab"><img src="docs/graph.svg" alt="ML concept graph" /></a>
+<a href="https://raw.githubusercontent.com/vishnu7553/ML-From-Scratch/main/docs/graph.svg" target="_blank" title="Open full-size SVG in new tab"><img src="https://raw.githubusercontent.com/vishnu7553/ML-From-Scratch/main/docs/graph.svg?v=2" alt="ML concept graph" /></a>
 
 <details>
 <summary><strong>Zoom / pan the graph right here</strong> - drag the scrollbars (or shift+scroll) to explore a 2x zoomed view</summary>
 <div style="width:100%; max-height:600px; overflow:auto; border:1px solid #d0d7de; border-radius:6px;">
-<img src="docs/graph.svg" width="1600" alt="ML concept graph (zoomed)" />
+<img src="https://raw.githubusercontent.com/vishnu7553/ML-From-Scratch/main/docs/graph.svg?v=2" width="1600" alt="ML concept graph (zoomed)" />
 </div>
 </details>
 Machine learning implemented from scratch — no sklearn, no shortcuts. Every algorithm is built from its mathematical foundation, with derivations in the notes and corresponding Python implementations.
