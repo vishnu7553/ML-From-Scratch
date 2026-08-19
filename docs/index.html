@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ML Concept Graph</title>
+<style>
+:root { color-scheme: light dark; }
+html, body { margin: 0; height: 100%; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; }
+#graph { display: block; width: 100vw; height: 100vh; }
+body { background: transparent; }
+
+@media (prefers-color-scheme: light) {
+  body { background: #ffffff; }
+  .node { fill: #6b7280; }
+  .label { fill: #4b5563; }
+  .link { stroke: #b9c0c8; }
+}
+@media (prefers-color-scheme: dark) {
+  body { background: #0d1117; }
+  .node { fill: #ffffff; }
+  .label { fill: #f5f5f5; }
+  .link { stroke: #5b6470; }
+}
+.node.hl { fill: #86efac; }
+.link { stroke-width: 1.5; stroke-opacity: 0.65; }
+.label { font-size: 14px; text-anchor: middle; pointer-events: none; user-select: none; }
+
+.controls { position: fixed; top: 12px; right: 12px; z-index: 10; display: flex; flex-direction: column; gap: 6px; }
+.controls button {
+  width: 38px; height: 38px; border-radius: 8px; border: 1px solid rgba(128,128,128,.35);
+  background: rgba(128,128,128,.12); color: inherit; font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.controls button:hover { background: rgba(128,128,128,.25); }
+#hint {
+  position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); z-index: 10;
+  font-size: 13px; opacity: .75; pointer-events: none;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="graph-data.js"></script>
+</head>
+<body>
+<div class="controls">
+  <button id="zin" title="Zoom in">+</button>
+  <button id="zout" title="Zoom out">&minus;</button>
+  <button id="fit" title="Reset / fit graph">&#8617;</button>
+  <button id="full" title="Toggle fullscreen">&#9864;</button>
+</div>
+<div id="hint">Scroll to zoom &middot; drag to pan</div>
+<svg id="graph"></svg>
+<script>
+(function () {
+  var data = window.GRAPH;
+  var nodes = data.nodes.map(function (d) { return Object.assign({}, d); });
+  var links = data.edges.map(function (d) { return { source: d.source, target: d.target }; });
+
+  var svg = d3.select("#graph");
+  var viewport = svg.append("g");
+  var linkLayer = viewport.append("g");
+  var nodeLayer = viewport.append("g");
+
+  var degree = {};
+  nodes.forEach(function (n) { degree[n.id] = 0; });
+  links.forEach(function (l) { degree[l.source]++; degree[l.target]++; });
+
+  var sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(function (d) { return d.id; }).distance(70).strength(0.4))
+    .force("charge", d3.forceManyBody().strength(-320))
+    .force("center", d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2))
+    .force("collide", d3.forceCollide().radius(function (d) { return (d.id === "Machine Learning" ? 26 : 14) + 12; }));
+
+  var link = linkLayer.selectAll("line").data(links).enter().append("line").attr("class", "link");
+  var node = nodeLayer.selectAll("g").data(nodes).enter().append("g");
+  node.append("circle")
+    .attr("class", function (d) { return "node" + (d.id === "Machine Learning" ? " hl" : ""); })
+    .attr("r", function (d) { return d.id === "Machine Learning" ? 22 : 4 + Math.sqrt(degree[d.id]) * 2.6; })
+    .append("title").text(function (d) { return d.label; });
+  node.append("text")
+    .attr("class", "label")
+    .attr("dy", function (d) { return (d.id === "Machine Learning" ? 22 : 4 + Math.sqrt(degree[d.id]) * 2.6) + 16; })
+    .text(function (d) { return d.label; });
+
+  function tick() {
+    link.attr("x1", function (d) { return d.source.x; })
+        .attr("y1", function (d) { return d.source.y; })
+        .attr("x2", function (d) { return d.target.x; })
+        .attr("y2", function (d) { return d.target.y; });
+    node.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
+  }
+  sim.on("tick", tick);
+
+  var zoom = d3.zoom()
+    .scaleExtent([0.15, 20])
+    .on("zoom", function (event) { viewport.attr("transform", event.transform); });
+  svg.call(zoom);
+
+  function fit() {
+    var pad = 80;
+    var xs = nodes.map(function (d) { return d.x; });
+    var ys = nodes.map(function (d) { return d.y; });
+    var x0 = d3.min(xs), x1 = d3.max(xs), y0 = d3.min(ys), y1 = d3.max(ys);
+    var w = window.innerWidth, h = window.innerHeight;
+    var s = Math.min(w / (x1 - x0 + pad * 2), h / (y1 - y0 + pad * 2));
+    s = Math.min(s, 1.5);
+    var tx = w / 2 - s * (x0 + x1) / 2, ty = h / 2 - s * (y0 + y1) / 2;
+    svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(s));
+  }
+
+  d3.select("#zin").on("click", function () { svg.transition().call(zoom.scaleBy, 1.4); });
+  d3.select("#zout").on("click", function () { svg.transition().call(zoom.scaleBy, 1 / 1.4); });
+  d3.select("#fit").on("click", fit);
+  d3.select("#full").on("click", function () {
+    if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); }
+    else { document.exitFullscreen(); }
+  });
+
+  window.addEventListener("resize", function () {
+    svg.attr("width", window.innerWidth).attr("height", window.innerHeight);
+    sim.force("center", d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2)).alpha(0.3).restart();
+  });
+
+  sim.on("end", function () {
+    d3.timeout(function () { fit(); }, 60);
+  });
+})();
+</script>
+</body>
+</html>
