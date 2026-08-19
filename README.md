@@ -1,4 +1,5 @@
 # ML From Scratch
+Machine learning implemented from scratch — no sklearn, no shortcuts. Every algorithm is built from its mathematical foundation, with derivations in the notes and corresponding Python implementations.
 
 <p align="center">
   <a href="https://vishnu7553.github.io/ML-From-Scratch/" target="_blank" title="Open interactive graph (full screen)">
@@ -6,9 +7,6 @@
   </a>
   <p>Click open the interactive graph.</p>
 </p>
-
-
-Machine learning implemented from scratch — no sklearn, no shortcuts. Every algorithm is built from its mathematical foundation, with derivations in the notes and corresponding Python implementations.
 
 ---
 
