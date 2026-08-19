@@ -87,11 +87,42 @@ body { background: transparent; }
     return d.label.length * 3.3 + 10;
   }
 
+  var CAT_ANCHORS = {
+    Foundations: [0.50, 0.14],
+    Regression: [0.22, 0.40],
+    Classification: [0.45, 0.52],
+    Generative: [0.30, 0.80],
+    SVM: [0.78, 0.36],
+    Implementation: [0.85, 0.72]
+  };
+  function anchorFor(d) {
+    var a = CAT_ANCHORS[d.category] || [0.5, 0.5];
+    return { x: window.innerWidth * a[0], y: window.innerHeight * a[1] };
+  }
+  var implAnchor = {};
+  nodes.forEach(function (d) {
+    if (d.kind !== "impl") return;
+    var nbs = links.filter(function (l) {
+      return l.source === d.id || l.target === d.id;
+    }).map(function (l) { return l.source === d.id ? l.target : l.source; })
+      .map(function (id) { return nodes.find(function (n) { return n.id === id; }); })
+      .filter(Boolean).map(anchorFor);
+    if (nbs.length) {
+      implAnchor[d.id] = {
+        x: d3.mean(nbs, function (p) { return p.x; }),
+        y: d3.mean(nbs, function (p) { return p.y; })
+      };
+    }
+  });
+  function anchorX(d) { return implAnchor[d.id] ? implAnchor[d.id].x : anchorFor(d).x; }
+  function anchorY(d) { return implAnchor[d.id] ? implAnchor[d.id].y : anchorFor(d).y; }
+
   var sim = d3.forceSimulation(nodes)
-    .force("link", d3.forceLink(links).id(function (d) { return d.id; }).distance(110).strength(0.35))
-    .force("charge", d3.forceManyBody().strength(-500))
-    .force("center", d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2))
-    .force("collide", d3.forceCollide().radius(function (d) { return Math.max(nodeRadius(d) + 10, labelRadius(d)); }));
+    .force("link", d3.forceLink(links).id(function (d) { return d.id; }).distance(95).strength(0.4))
+    .force("charge", d3.forceManyBody().strength(-360))
+    .force("x", d3.forceX(anchorX).strength(0.3))
+    .force("y", d3.forceY(anchorY).strength(0.3))
+    .force("collide", d3.forceCollide().radius(function (d) { return Math.max(nodeRadius(d) + 8, labelRadius(d)); }));
 
   var link = linkLayer.selectAll("line").data(links).enter().append("line").attr("class", "link");
   var node = nodeLayer.selectAll("g").data(nodes).enter().append("g");
@@ -162,7 +193,9 @@ body { background: transparent; }
 
   window.addEventListener("resize", function () {
     svg.attr("width", window.innerWidth).attr("height", window.innerHeight);
-    sim.force("center", d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2)).alpha(0.3).restart();
+    sim.force("x", d3.forceX(anchorX).strength(0.3))
+       .force("y", d3.forceY(anchorY).strength(0.3))
+       .alpha(0.3).restart();
   });
 
   sim.on("end", function () { d3.timeout(fit, 100); });
