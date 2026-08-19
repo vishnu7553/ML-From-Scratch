@@ -6,7 +6,7 @@
   </a>
 </p>
 
-<p align="center"><strong><a href="https://vishnu7553.github.io/ML-From-Scratch/" target="_blank">Open the interactive graph</a></strong> &mdash; full screen, scroll to zoom anywhere, drag to pan.</p>
+<p align="center">Open the interactive graph.</p>
 Machine learning implemented from scratch — no sklearn, no shortcuts. Every algorithm is built from its mathematical foundation, with derivations in the notes and corresponding Python implementations.
 
 ---
