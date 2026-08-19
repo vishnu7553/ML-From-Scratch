@@ -13,20 +13,23 @@ body { background: transparent; }
 @media (prefers-color-scheme: light) {
   body { background: #ffffff; }
   .node { fill: #6b7280; }
-  .label { fill: #4b5563; }
+  .label { fill: #4b5563; stroke: #ffffff; }
   .link { stroke: #b9c0c8; }
 }
 @media (prefers-color-scheme: dark) {
   body { background: #0d1117; }
   .node { fill: #ffffff; }
-  .label { fill: #f5f5f5; }
+  .label { fill: #f5f5f5; stroke: #0d1117; }
   .link { stroke: #5b6470; }
 }
 .node.hl { fill: #86efac; }
-.link { stroke-width: 1.5; stroke-opacity: 0.65; }
+.link { stroke-width: 1.2; stroke-opacity: 0.5; }
 .node { cursor: pointer; }
 .node:hover { stroke: #86efac; stroke-width: 2; }
-.label { font-size: 14px; text-anchor: middle; pointer-events: none; user-select: none; }
+.label {
+  font-size: 12px; text-anchor: middle; pointer-events: none; user-select: none;
+  paint-order: stroke; stroke-width: 3px; stroke-linejoin: round;
+}
 
 .controls { position: fixed; top: 12px; right: 12px; z-index: 10; display: flex; flex-direction: column; gap: 6px; }
 .controls button {
@@ -77,23 +80,30 @@ body { background: transparent; }
     window.open(url, "_blank");
   }
 
+  function nodeRadius(d) {
+    return d.id === "Machine Learning" ? 22 : 4 + Math.sqrt(degree[d.id]) * 2.6;
+  }
+  function labelRadius(d) {
+    return d.label.length * 3.3 + 10;
+  }
+
   var sim = d3.forceSimulation(nodes)
-    .force("link", d3.forceLink(links).id(function (d) { return d.id; }).distance(70).strength(0.4))
-    .force("charge", d3.forceManyBody().strength(-320))
+    .force("link", d3.forceLink(links).id(function (d) { return d.id; }).distance(110).strength(0.35))
+    .force("charge", d3.forceManyBody().strength(-500))
     .force("center", d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2))
-    .force("collide", d3.forceCollide().radius(function (d) { return (d.id === "Machine Learning" ? 26 : 14) + 12; }))
-    .alphaTarget(0.03)
+    .force("collide", d3.forceCollide().radius(function (d) { return Math.max(nodeRadius(d) + 10, labelRadius(d)); }))
+    .alphaTarget(0.02)
     .restart();
 
   var link = linkLayer.selectAll("line").data(links).enter().append("line").attr("class", "link");
   var node = nodeLayer.selectAll("g").data(nodes).enter().append("g");
   node.append("circle")
     .attr("class", function (d) { return "node" + (d.id === "Machine Learning" ? " hl" : ""); })
-    .attr("r", function (d) { return d.id === "Machine Learning" ? 22 : 4 + Math.sqrt(degree[d.id]) * 2.6; })
+    .attr("r", nodeRadius)
     .append("title").text(function (d) { return d.label; });
   node.append("text")
     .attr("class", "label")
-    .attr("dy", function (d) { return (d.id === "Machine Learning" ? 22 : 4 + Math.sqrt(degree[d.id]) * 2.6) + 16; })
+    .attr("dy", function (d) { return nodeRadius(d) + 14; })
     .text(function (d) { return d.label; });
 
   function tick() {
