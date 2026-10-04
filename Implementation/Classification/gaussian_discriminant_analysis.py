@@ -78,11 +78,15 @@ def evaluate(X, y, phi, mu_0, mu_1, Sigma):
     preds = predict(X, phi, mu_0, mu_1, Sigma)
     accuracy = np.mean(preds == y)
 
-    print("── Evaluation ───────────────────────────")
+    print("── Estimated Parameters (Training Set) ───")
     print(f"   phi   : {phi:.4f}")
     print(f"   mu_0  : {mu_0}")
     print(f"   mu_1  : {mu_1}")
-    print(f"   Accuracy: {accuracy * 100:.2f}%")
+    print(f"   Training Accuracy: {accuracy * 100:.2f}%")
+    print("─────────────────────────────────────────")
+    print("   phi/mu/Sigma are closed-form estimates from the training")
+    print("   rows; the accuracy is measured on those same rows, so it")
+    print("   is not a generalization estimate.")
     print("─────────────────────────────────────────\n")
 
 

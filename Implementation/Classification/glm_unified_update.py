@@ -81,7 +81,7 @@ if __name__ == "__main__":
     preds = (sigmoid(X_clf_b @ theta_clf) >= 0.5).astype(int)
     acc = np.mean(preds == y_clf) * 100
     print(f"   Learned theta: {theta_clf.T}")
-    print(f"   Accuracy: {acc:.1f}%")
+    print(f"   Training Accuracy: {acc:.1f}%")
     print("─────────────────────────────────────────\n")
 
     print("── GLM 3: Counts (Poisson) ──────────────")

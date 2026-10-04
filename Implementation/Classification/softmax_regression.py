@@ -109,8 +109,11 @@ def evaluate(X, Y, theta):
     true_labels = np.argmax(Y, axis=1)
     accuracy = np.mean(predictions == true_labels)
 
-    print("── Evaluation ───────────────────────────")
-    print(f"   Accuracy: {accuracy * 100:.2f}%")
+    print("── Evaluation on Training Set ───────────")
+    print(f"   Training Accuracy: {accuracy * 100:.2f}%")
+    print("─────────────────────────────────────────")
+    print("   Separable synthetic blobs, fit and scored on the same")
+    print("   rows — a mechanics check, not a result.")
     print("─────────────────────────────────────────\n")
     return predictions
 

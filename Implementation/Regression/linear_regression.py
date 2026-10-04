@@ -108,13 +108,16 @@ def normal_equation(x, y):
 
 
 # ─────────────────────────────────────────────
-# Evaluation
+# Training-Set Error Check
 # ─────────────────────────────────────────────
 
 def evaluate(x_vals, y_vals, m, b):
     """
-    Evaluates the trained model using three standard regression metrics:
+    Reports how closely the fitted line reproduces the rows it was
+    trained on. These are training-set errors: nothing is held out, so
+    they describe the fit itself rather than performance on new data.
 
+    Metrics:
         R²   — proportion of variance in y explained by the model (0 to 1)
         RMSE — error in the same units as y, penalises large errors
         MAE  — average absolute error, robust to outliers
@@ -128,10 +131,14 @@ def evaluate(x_vals, y_vals, m, b):
     rmse = np.sqrt(np.mean((y_vals - predictions) ** 2))
     mae  = np.mean(np.abs(y_vals - predictions))
 
-    print("\n── Evaluation ───────────────────────────")
+    print("\n── Error on the Training Set ─────────────")
     print(f"   R²   : {r2:.4f}  (1.0 = perfect fit)")
     print(f"   RMSE : {rmse:,.2f}")
     print(f"   MAE  : {mae:,.2f}")
+    print("─────────────────────────────────────────")
+    print("   Measured on the 30 rows the line was fitted to. With one")
+    print("   input and a straight line this is near-perfect by")
+    print("   construction — not a claim about unseen data.")
     print("─────────────────────────────────────────\n")
 
 

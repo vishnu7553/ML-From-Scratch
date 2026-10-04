@@ -4,10 +4,14 @@ import numpy as np
 import pandas as pd
 
 # ─────────────────────────────────────────────
-# Dataset — reuse the same student pass/fail data
-# as Logistic Regression, so convergence speed is
-# directly comparable on identical data.
+# Dataset — student pass/fail, 19 rows
 # ─────────────────────────────────────────────
+# Logistic Regression now runs on heart.csv, so this file keeps the
+# small student set. That is deliberate: the point here is purely how
+# fast the two optimisation methods converge, and the log-likelihood
+# is read on the training rows as a convergence signal, not as a
+# performance figure. A tiny set makes the iteration counts easy to
+# see; nothing here is an accuracy claim.
 
 DATASETS_DIR = Path(__file__).resolve().parent.parent / "datasets"
 
@@ -25,7 +29,7 @@ def sigmoid(z):
 
 # ─────────────────────────────────────────────
 # Gradient Ascent — baseline for comparison
-# (same as Implementation/Classification/logistic_regression.py)
+# (same update rule as logistic_regression.py)
 # ─────────────────────────────────────────────
 
 def gradient_ascent(X, y, epochs=1000, alpha=0.01, tol=1e-8):
