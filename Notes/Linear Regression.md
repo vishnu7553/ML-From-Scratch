@@ -198,3 +198,7 @@ where further updates produce no meaningful change in loss.
 - *Mathematics for Machine Learning* — Deisenroth et al. (mml-book.github.io)
 - Stanford CS229 Lecture Notes — cs229.stanford.edu
 - *Dive into Deep Learning* — d2l.ai
+
+---
+
+**Next:** [[Locally weighted regression]]

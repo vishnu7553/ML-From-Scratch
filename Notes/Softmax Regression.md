@@ -97,3 +97,7 @@ The learning rule treats the output as a probability distribution and uses gradi
 - _Mathematics for Machine Learning_ — Deisenroth et al. (mml-book.github.io)
 - Stanford CS229 Lecture Notes — cs229.stanford.edu
 - _Dive into Deep Learning_ — d2l.ai
+
+---
+
+**Next:** [[Generative Learning Algorithms]]

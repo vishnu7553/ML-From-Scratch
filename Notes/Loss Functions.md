@@ -27,3 +27,7 @@ The loss is the mathematical shadow of the assumed data distribution (see [[Expo
 - [[Probabilistic Interpretation]]
 - [[Exponential family]]
 - [[Gradient Descent]]
+
+---
+
+**Next:** [[Gradient Descent]]

@@ -85,7 +85,7 @@ $$\boxed{\phi_{j\mid y=1} = \frac{\sum_{i=1}^{m}\mathbb{1}{x_j^{(i)}=1,\ y^{(i)}
 
 If you use Maximum Likelihood Estimation and just look at the data:
 
-$$p(\text{win}) = \frac{#\text{wins}}{#\text{wins} + #\text{losses}} = \frac{0}{5} = 0$$
+$$p(\text{win}) = \frac{\text{count}(\text{win})}{\text{count}(\text{win}) + \text{count}(\text{loss})} = \frac{0}{5} = 0$$
 
 That's both mean and mathematically arrogant — you're claiming 100% certainty the team can _never_ win again, just because of 5 sequential losses. That's ridiculous.
 
@@ -95,7 +95,7 @@ That's both mean and mathematically arrogant — you're claiming 100% certainty 
 
 Simple: we pretend. We gracefully say "let's pretend the team played 2 more games, winning 1 and losing 1":
 
-$$\text{Win prob} = \frac{(#\text{wins})+1}{(#\text{wins})+1 + (#\text{losses})+1} = \frac{0+1}{5+2} = \frac{1}{7}$$
+$$\text{Win prob} = \frac{\text{count}(\text{win})+1}{\text{count}(\text{win})+1 + \text{count}(\text{loss})+1} = \frac{0+1}{5+2} = \frac{1}{7}$$
 
 That feels far more reasonable — we didn't let 5 losses bully us into saying zero.
 
@@ -122,3 +122,7 @@ This keeps Bayes' multiplication safe, ensuring the model can still evaluate ema
 - _Mathematics for Machine Learning_ — Deisenroth et al. (mml-book.github.io)
 - Stanford CS229 Lecture Notes — cs229.stanford.edu
 - _Dive into Deep Learning_ — d2l.ai
+
+---
+
+**Next:** [[Support Vector Machines]]

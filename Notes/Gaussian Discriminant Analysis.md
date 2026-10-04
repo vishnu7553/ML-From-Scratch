@@ -136,3 +136,7 @@ Though both algorithms end up using a sigmoid, the parameters they choose to get
 - _Mathematics for Machine Learning_ — Deisenroth et al. (mml-book.github.io)
 - Stanford CS229 Lecture Notes — cs229.stanford.edu
 - _Dive into Deep Learning_ — d2l.ai
+
+---
+
+**Next:** [[Naive bayes]]

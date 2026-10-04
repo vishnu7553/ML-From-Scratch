@@ -136,3 +136,7 @@ The functional margin can be artificially inflated by scaling parameters $w$ and
 - _Mathematics for Machine Learning_ — Deisenroth et al. (mml-book.github.io)
 - Stanford CS229 Lecture Notes — cs229.stanford.edu
 - _Dive into Deep Learning_ — d2l.ai
+
+---
+
+**Next:** [[Optimal margin classifier]]

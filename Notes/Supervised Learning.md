@@ -127,3 +127,7 @@ flowchart LR
 - *Mathematics for Machine Learning* — Deisenroth et al. (mml-book.github.io)
 - Stanford CS229 Lecture Notes — cs229.stanford.edu
 - *Dive into Deep Learning* — d2l.ai
+
+---
+
+**Next:** [[Loss Functions]]

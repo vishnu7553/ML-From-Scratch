@@ -94,3 +94,7 @@ Now we're ready to jump to classification.
 - _Mathematics for Machine Learning_ — Deisenroth et al. (mml-book.github.io)
 - Stanford CS229 Lecture Notes — cs229.stanford.edu
 - _Dive into Deep Learning_ — d2l.ai
+
+---
+
+**Next:** [[Sigmoid Function]]

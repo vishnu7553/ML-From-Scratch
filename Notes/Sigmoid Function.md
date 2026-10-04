@@ -21,3 +21,7 @@ $$\sigma(z) = \frac{1}{1 + e^{-z}}$$
 - [[Logistic Regression]]
 - [[Exponential family]]
 - [[Gaussian Discriminant Analysis]]
+
+---
+
+**Next:** [[Logistic Regression]]

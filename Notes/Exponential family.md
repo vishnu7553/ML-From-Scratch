@@ -95,3 +95,7 @@ $$b(y) = \frac{1}{\sqrt{2\pi}} e^{-y^2/2} \qquad T(y) = y \qquad \eta = \mu \qqu
 - _Mathematics for Machine Learning_ — Deisenroth et al. (mml-book.github.io)
 - Stanford CS229 Lecture Notes — cs229.stanford.edu
 - _Dive into Deep Learning_ — d2l.ai
+
+---
+
+**Next:** [[Generalized linear models]]

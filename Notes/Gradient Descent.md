@@ -24,3 +24,7 @@ $$\theta \leftarrow \theta - \alpha \frac{\partial}{\partial \theta} J(\theta)$$
 - [[Linear Regression]]
 - [[Logistic Regression]]
 - [[Newton's method]]
+
+---
+
+**Next:** [[Linear Regression]]

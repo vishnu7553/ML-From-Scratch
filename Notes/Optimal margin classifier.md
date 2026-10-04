@@ -90,3 +90,7 @@ Example: $g([2,1]\cdot x - 2)$ gives decision boundary $w^Tx+b = 2x_1 + 1x_2 - 2
 - _Mathematics for Machine Learning_ — Deisenroth et al. (mml-book.github.io)
 - Stanford CS229 Lecture Notes — cs229.stanford.edu
 - _Dive into Deep Learning_ — d2l.ai
+
+---
+
+**Next:** [[Kernels]]

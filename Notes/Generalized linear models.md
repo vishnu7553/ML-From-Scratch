@@ -151,3 +151,7 @@ $$\theta_j := \theta_j - \alpha\left[(y^{(i)} - h_\theta(x^{(i)}))x^{(i)}\right]
 - _Mathematics for Machine Learning_ — Deisenroth et al. (mml-book.github.io)
 - Stanford CS229 Lecture Notes — cs229.stanford.edu
 - _Dive into Deep Learning_ — d2l.ai
+
+---
+
+**Next:** [[Softmax Regression]]

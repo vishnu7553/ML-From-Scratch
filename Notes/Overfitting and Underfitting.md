@@ -19,3 +19,7 @@ Every model trades these two failure modes. The goal is the sweet spot where tot
 - [[Linear Regression]]
 - [[Logistic Regression]]
 - [[Locally weighted regression]]
+
+---
+
+**Next:** [[Bias And Variance]]

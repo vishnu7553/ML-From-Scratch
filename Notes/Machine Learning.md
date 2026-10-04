@@ -106,3 +106,7 @@ point — it is the foundation everything else is built on.
 - *Mathematics for Machine Learning* — Deisenroth et al. (mml-book.github.io)
 - *Dive into Deep Learning* — d2l.ai
 - Stanford CS229 Lecture Notes — cs229.stanford.edu
+
+---
+
+**Next:** [[Supervised Learning]]

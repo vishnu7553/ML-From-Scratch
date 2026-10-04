@@ -106,3 +106,7 @@ $\tau^2$ (tau) controls how wide the bell curve is — i.e., how many points cou
 - _Mathematics for Machine Learning_ — Deisenroth et al. (mml-book.github.io)
 - Stanford CS229 Lecture Notes — cs229.stanford.edu
 - _Dive into Deep Learning_ — d2l.ai
+
+---
+
+**Next:** [[Probabilistic Interpretation]]
